@@ -93,23 +93,19 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
 
     function _beforeTokenTransfer(
         address from,
-        address to,
-        uint256,
-        uint256 batchSize
-    ) internal virtual override {
-        require(batchSize == 0, "Batch minting not allowed");
-        require(
-            from == address(0) || to == address(0),
-            "Soulbound tokens can't be tranfered."
-        );
-    }
-
-    function _afterTokenTransfer(
-        address,
         address,
         uint256,
         uint256
     ) internal virtual override {
-        require(false, "Burning not allowed");
+        require(from == address(0), "Soulbound tokens can't be tranfered.");
+    }
+
+    function _afterTokenTransfer(
+        address from,
+        address,
+        uint256,
+        uint256
+    ) internal virtual override {
+        require(from == address(0), "Soulbound tokens can't be tranfered.");
     }
 }

@@ -25,7 +25,6 @@ exports.combine16 = function(rnd) {
     return out;
 }
 
-export {Encrypt, Decrypt, Hashing};
 const CryptoJS = require("crypto-js");
 const bcrypt = require("bcrypt");
 
