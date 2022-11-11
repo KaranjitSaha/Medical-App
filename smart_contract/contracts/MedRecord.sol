@@ -53,7 +53,7 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
         return tokenList[msg.sender];
     }
 
-    ////DIFFERENTIAL SECURITY SYSTEM
+    // differential security system
 
     mapping(uint256 => uint256) seedMap;
 
@@ -62,7 +62,7 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
         uint256 seed,
         metaData memory mD,
         string memory uri
-    ) internal onlyOwner {
+    ) public onlyOwner {
         seedMap[tokenId] = seed;
         metaDataMap[tokenId] = mD;
         _setTokenURI(tokenId, uri);
@@ -85,7 +85,7 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
         return metaDataMap[tokenId];
     }
 
-    ////SOUL BOUND SYSTEM
+    // soul bound nft
 
     event Attest(address indexed to, uint256 indexed tokenId);
     event Revoke(address indexed to, uint256 indexed tokenId);

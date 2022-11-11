@@ -9,21 +9,49 @@ const tokens = (n) => {
 describe('MedRecord.sol', () => {
 
   let medRecord
+  let customer1, customer2
   let token1, token2;
+  let metaData1 = {
+    'time': "10:00",
+    'group': "Prescription",
+    "issue": "10:00",
+    "name": "World"
+  },
+    metaData2 = {
+      'time': "10:00",
+      'group': "Prescription",
+      "issue": "10:00",
+      "name": "World"
+    }
 
   beforeEach(async () => {
-    [customer] = await ethers.getSigners()
+    [customer1, customer2] = await ethers.getSigners()
 
     const MedRecord = await ethers.getContractFactory('MedRecord')
     medRecord = await MedRecord.deploy()
+    // medRecord1 = await MedRecord.deploy()
 
     // Creating a basic NFT
     token1 = getRandom256()
-    let transaction = await medRecord.connect(customer).safeMint(token1, "https://ipfs.io/ipfs/QmTudSYeM7mz3PkYEWXWqPjomRPHogcMFSq7XAvsvsgAPS", 10, { 'time': "10:00", 'group': "Prescription", "issue": "10:00", "name": "World" })
+    let transaction = await medRecord
+      .connect(customer1)
+      .safeMint(
+        token1,
+        "https://ipfs.io/ipfs/QmTudSYeM7mz3PkYEWXWqPjomRPHogcMFSq7XAvsvsgAPS",
+        getRandom256(),
+        metaData1
+      )
     await transaction.wait()
 
     token2 = getRandom256()
-    transaction = await medRecord.connect(customer).safeMint(token2, "https://ipfs.io/ipfs/QmTudSYeM7mz3PkYEWXWqPjomRPHogcMFSq7XAvsvsgAPS", 10, { 'time': "10:00", 'group': "Prescription", "issue": "10:00", "name": "World" })
+    transaction = await medRecord1
+      .connect(customer2)
+      .safeMint(
+        token2,
+        "http://ipfs.io/ipfs/QmTudSYeM7mz3PkYEWXWqPjomRPHogcMFSq7XAvsvsgAPS",
+        getRandom256(),
+        metaData2
+      )
     await transaction.wait()
   })
 
@@ -39,6 +67,18 @@ describe('MedRecord.sol', () => {
       expect(1).to.be.equal(1)
     })
 
+    it('updating seed', async () => {
+      let newSeed = getRandom256()
+      await medRecord
+        .updateSeed(
+          token2,
+          newSeed,
+          metaData1,
+          "hello"
+        )
+      let result = await medRecord.getSeed(token1)
+      expect(result).to.be.equal(newSeed)
+    })
 
   })
 
