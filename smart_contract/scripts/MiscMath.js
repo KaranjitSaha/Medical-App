@@ -5,6 +5,7 @@ exports.getRandom16 = function() {
     rand = rand*Math.random();
     return Math.floor(rand);
 }
+
 exports.split16 = function(bgn) {
     let base=1<<16;
     split=[];

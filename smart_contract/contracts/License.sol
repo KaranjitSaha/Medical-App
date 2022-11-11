@@ -11,6 +11,14 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
 
     ////BASIC NFT FUNCTIONS
 
+    struct metaData {
+        string time;
+        string group;
+        string issue;
+    }
+
+    mapping(uint256 => metaData) metaDataMap;
+
     mapping(address => uint256[]) internal tokenList;
 
     function safeMint(
@@ -18,17 +26,13 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
         uint256 memory tokenId,
         string memory uri,
         uint256 memory seed,
-        string memory timeParts
+        metaData memory mD
     ) public onlyOwner {
-        ////BASIC NFT FUNCTION
-
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
 
-        ////SECURITY INIT
-
         updateSeed(tokenId, seed);
-        timeLent[tokenId] = block.timestamp;
+        metaDataMap[tokenId] = mD;
         tokenList[msg.sender].push(tokenId);
     }
 
@@ -48,13 +52,21 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
         return super.tokenURI(tokenId);
     }
 
+    function getTokenList() public view returns (uint256[] memory) {
+        return tokenList[msg.sender];
+    }
+
     ////DIFFERENTIAL SECURITY SYSTEM
 
     mapping(uint256 => uint256) seedMap;
-    mapping(uint256 => string) timeLent;
 
-    function updateSeed(uint256 tokenId, uint256 seed) internal {
+    function updateSeed(
+        uint256 tokenId,
+        uint256 seed,
+        string memory time
+    ) internal {
         seedMap[tokenId] = seed;
+        metaDataMap[tokenId].time = time;
     }
 
     function getSeed(uint256 tokenId) public view returns (uint256) {
@@ -65,17 +77,13 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
         return uintToString(block.timestamp);
     }
 
-    function getLastUpdatedTime(uint256 tokenId)
+    function getMetaData(metaData tokenId)
         public
         view
         onlyOwner
         returns (string)
     {
-        return uintToString(timeLent[tokenId]);
-    }
-
-    function getTokenList() public view returns (uint256[] memory) {
-        return tokenList[msg.sender];
+        return metaDataMap[tokenId];
     }
 
     ////SOUL BOUND SYSTEM
