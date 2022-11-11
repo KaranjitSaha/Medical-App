@@ -6,8 +6,8 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Misc.sol";
 
-contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
-    constructor() ERC721("MediStore", "MediStore") {}
+contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
+    constructor() ERC721("MedRecord", "MedRecord") {}
 
     ////BASIC NFT FUNCTIONS
 
@@ -15,6 +15,7 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
         string time;
         string group;
         string issue;
+        string name;
     }
 
     mapping(uint256 => metaData) metaDataMap;
@@ -22,13 +23,12 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
     mapping(address => uint256[]) internal tokenList;
 
     function safeMint(
-        address to,
         uint256 tokenId,
         string memory uri,
         uint256 seed,
         metaData memory mD
     ) public onlyOwner {
-        _safeMint(to, tokenId);
+        _safeMint(msg.sender, tokenId);
         updateSeed(tokenId, seed, mD, uri);
         tokenList[msg.sender].push(tokenId);
     }

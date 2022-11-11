@@ -2,11 +2,12 @@ const { BigNumber } = require('ethers')
 const CryptoJS = require("crypto-js")
 const { createHash } = require('crypto');
 
-exports.getRandom16 = function () {
+getRandom16 = function () {
     let rand = 1 << 16;
     rand = rand * Math.random();
     return Math.floor(rand);
 }
+exports.getRandom16 = getRandom16
 
 exports.split16 = function (bgn) {
     let base = 1 << 16;
@@ -18,14 +19,19 @@ exports.split16 = function (bgn) {
     return split;
 }
 
-exports.combine16 = function (rnd) {
+combine16 = function (rnd) {
     var out = BigNumber.from(0)
-    rnd.array.forEach(i => {
+    for (var i = 0; i < 16; i++) {
         out = out.shl(16);
-        out = out.or(i);
-    });
+        out = out.or(rnd[i]);
+    }
+    // rnd.array.forEach(i => {
+    //     out = out.shl(16);
+    //     out = out.or(i);
+    // });
     return out;
 }
+exports.combine16 = combine16
 
 exports.getRandom256 = function () {
     var arr = []
