@@ -1,13 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.9;
 
+import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Misc.sol";
 
-contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
-    constructor() ERC721("MediStore", "MediStore") {}
+contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
+
+    constructor() ERC721("MedRecord", "MedRecord") {}
 
     ////BASIC NFT FUNCTIONS
 
@@ -22,17 +26,18 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
     mapping(address => uint256[]) internal tokenList;
 
     function safeMint(
-        address to,
-        uint256 tokenId,
         string memory uri,
         uint256 seed,
         metaData memory mD
     ) public onlyOwner {
-        _safeMint(to, tokenId);
+        _tokenIds.increment();
+        uint256 newItemID = _tokenIds.current();
 
-        updateSeed(tokenId, seed, mD, uri);
-        metaDataMap[tokenId] = mD;
-        tokenList[msg.sender].push(tokenId);
+        _safeMint(msg.sender, newItemID);
+
+        updateSeed(newItemID, seed, mD, uri);
+        metaDataMap[newItemID] = mD;
+        tokenList[msg.sender].push(newItemID);
     }
 
     function _burn(uint256 tokenId)
@@ -56,7 +61,6 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
     }
 
     ////DIFFERENTIAL SECURITY SYSTEM
-
     mapping(uint256 => uint256) seedMap;
 
     function updateSeed(
@@ -98,7 +102,7 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
         uint256,
         uint256
     ) internal virtual override {
-        require(from == address(0), "Soulbound tokens can't be tranfered.");
+        require(from == address(0), "Medical Records can't be tranfered.");
     }
 
     function _afterTokenTransfer(
@@ -107,6 +111,6 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
         uint256,
         uint256
     ) internal virtual override {
-        require(from == address(0), "Soulbound tokens can't be tranfered.");
+        require(from == address(0), "Medical Records can't be tranfered.");
     }
 }
