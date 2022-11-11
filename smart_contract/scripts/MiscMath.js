@@ -1,4 +1,6 @@
 const { BigNumber } = require('ethers')
+const CryptoJS = require("crypto-js")
+const { createHash } = require('crypto');
 
 exports.getRandom16 = function() {
     let rand=1<<16;
@@ -25,16 +27,22 @@ exports.combine16 = function(rnd) {
     return out;
 }
 
-const CryptoJS = require("crypto-js");
-const bcrypt = require("bcrypt");
-
-exports.Encrypt = function(object,seed){
-    return CryptoJS.AES.encrypt(JSON.stringify(object),seed.toString()).toString();
-}
-exports.Decrypt= function(cipherText, seed){
-    return CryptoJS.AES.decrypt(cipherText,seed.toString()).toString(CryptoJS.enc.Utf8);
+exports.getRandom256 = function() {
+    var arr=[]
+    for(var i=0;i<16;i++){
+        arr.push(getRandom16());
+    }
+    return combine16(arr);
 }
 
-exports.Hashing= async function(plainText, saltRounds){
-    return await bcrypt.hash(plainText,saltRounds);
+exports.Encrypt = function(object,hash){
+    return CryptoJS.AES.encrypt(JSON.stringify(object),hash.toString()).toString();
+}
+
+exports.Decrypt = function(cipherText, hash){
+    return CryptoJS.AES.decrypt(cipherText,hash.toString()).toString(CryptoJS.enc.Utf8);
+}
+
+exports.Hash = function(plainText) {
+    return createHash('sha256').update(plainText).digest('hex');
 }

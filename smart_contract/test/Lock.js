@@ -34,6 +34,8 @@ describe('MedRecord.sol', () => {
       console.log(result)
       expect(1).to.be.equal(1)
     })
+
+
   })
 
 })
