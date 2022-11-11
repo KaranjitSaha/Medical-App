@@ -23,15 +23,15 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
 
     function safeMint(
         address to,
-        uint256 memory tokenId,
+        uint256 tokenId,
         string memory uri,
-        uint256 memory seed,
+        uint256 seed,
         metaData memory mD
     ) public onlyOwner {
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
 
-        updateSeed(tokenId, seed);
+        updateSeed(tokenId, seed, mD.time);
         metaDataMap[tokenId] = mD;
         tokenList[msg.sender].push(tokenId);
     }
@@ -77,11 +77,11 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
         return uintToString(block.timestamp);
     }
 
-    function getMetaData(metaData tokenId)
+    function getMetaData(uint256 tokenId)
         public
         view
         onlyOwner
-        returns (string)
+        returns (metaData memory)
     {
         return metaDataMap[tokenId];
     }
@@ -105,16 +105,11 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
     }
 
     function _afterTokenTransfer(
-        address from,
-        address to,
-        uint256 firstTokenId,
-        uint256 batchSize
+        address,
+        address,
+        uint256,
+        uint256
     ) internal virtual override {
-        require(batchSize == 0, "Batch burning not allowed");
-        if (from == address(0)) {
-            emit Attest(to, firstTokenId);
-        } else if (to == address(0)) {
-            emit Revoke(to, firstTokenId);
-        }
+        require(false, "Burning not allowed");
     }
 }
