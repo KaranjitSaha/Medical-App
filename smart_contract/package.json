@@ -5,6 +5,8 @@
   },
   "dependencies": {
     "@openzeppelin/cli": "^2.8.2",
-    "@openzeppelin/contracts": "^4.8.0"
+    "@openzeppelin/contracts": "^4.8.0",
+    "bcrypt": "^5.1.0",
+    "crypto-js": "^4.1.1"
   }
 }

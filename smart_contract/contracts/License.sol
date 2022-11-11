@@ -63,10 +63,10 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
     function updateSeed(
         uint256 tokenId,
         uint256 seed,
-        string memory time
+        metaData memory mD
     ) internal {
         seedMap[tokenId] = seed;
-        metaDataMap[tokenId].time = time;
+        metaDataMap[tokenId] = mD;
     }
 
     function getSeed(uint256 tokenId) public view returns (uint256) {
