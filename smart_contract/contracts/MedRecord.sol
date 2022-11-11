@@ -32,7 +32,7 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
         _safeMint(msg.sender, tokenId);
         updateSeed(tokenId, seed, mD, uri);
         tokenList[msg.sender].push(tokenId);
-        tokenOwner[tokenId]=msg.sender
+        tokenOwner[tokenId] = msg.sender;
     }
 
     function _burn(uint256 tokenId)
@@ -61,7 +61,7 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
 
     modifier onlyTokenOwner(uint256 tokenId) {
         require(
-            tokenOwner[tokenId],
+            tokenOwner[tokenId] == msg.sender,
             "Only the owner of this token can access it."
         );
         _;
@@ -76,7 +76,7 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
         uint256 seed,
         metaData memory mD,
         string memory uri
-    ) public onlyTokenOwner {
+    ) public onlyTokenOwner(tokenId) {
         seedMap[tokenId] = seed;
         metaDataMap[tokenId] = mD;
         _setTokenURI(tokenId, uri);
