@@ -15,16 +15,11 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
 
     function safeMint(
         address to,
-        uint16[] memory tokenIdParts,
+        uint256 memory tokenId,
         string memory uri,
-        uint16[] memory seedParts,
+        uint256 memory seed,
         string memory timeParts
     ) public onlyOwner {
-        ////JS INTEERFACE
-
-        uint256 tokenId = combine(tokenIdParts);
-        uint256 seed = combine(seedParts);
-
         ////BASIC NFT FUNCTION
 
         _safeMint(to, tokenId);
@@ -58,9 +53,12 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
     mapping(uint256 => uint256) seedMap;
     mapping(uint256 => string) timeLent;
 
-    function updateSeed(uint256 tokenId, uint16[] seedParts) internal {
-        seed = combine(seedParts);
+    function updateSeed(uint256 tokenId, uint256 seed) internal {
         seedMap[tokenId] = seed;
+    }
+
+    function getSeed(uint256 tokenId) public view returns (uint256) {
+        return seedMap[tokenId];
     }
 
     function getCurrentTime() public view returns (string memory) {

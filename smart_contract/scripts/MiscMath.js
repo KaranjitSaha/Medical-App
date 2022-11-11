@@ -1,3 +1,5 @@
+const { BigNumber } = require('ethers')
+
 exports.getRandom16 = function() {
     let rand=1<<16;
     rand = rand*Math.random();
@@ -11,4 +13,13 @@ exports.split16 = function(bgn) {
         bgn=bgn.dividedToIntegerBy(base);
     }
     return split;
+}
+
+exports.combine16 = function(rnd) {
+    var out=BigNumber.from(0)
+    rnd.array.forEach(i => {
+        out=out.shl(16);
+        out=out.or(i);
+    });
+    return out;
 }
