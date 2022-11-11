@@ -29,9 +29,8 @@ contract MediStore is ERC721, ERC721URIStorage, Ownable, Misc {
         metaData memory mD
     ) public onlyOwner {
         _safeMint(to, tokenId);
-        _setTokenURI(tokenId, uri);
 
-        updateSeed(tokenId, seed, mD.time);
+        updateSeed(tokenId, seed, mD, uri);
         metaDataMap[tokenId] = mD;
         tokenList[msg.sender].push(tokenId);
     }
