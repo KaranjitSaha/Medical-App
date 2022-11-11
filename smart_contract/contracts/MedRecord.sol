@@ -18,8 +18,8 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
         string name;
     }
 
+    mapping(uint256 => bool) usedTokenId;
     mapping(uint256 => metaData) metaDataMap;
-
     mapping(address => uint256[]) internal tokenList;
 
     function safeMint(
@@ -27,10 +27,12 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
         string memory uri,
         uint256 seed,
         metaData memory mD
-    ) public onlyOwner {
+    ) public {
+        require(!usedTokenId[tokenId], "Token Id already in use.");
         _safeMint(msg.sender, tokenId);
         updateSeed(tokenId, seed, mD, uri);
         tokenList[msg.sender].push(tokenId);
+        tokenOwner[tokenId]=msg.sender
     }
 
     function _burn(uint256 tokenId)
@@ -53,7 +55,19 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
         return tokenList[msg.sender];
     }
 
-    // differential security system
+    //Ownership system
+
+    mapping(uint256 => address) tokenOwner;
+
+    modifier onlyTokenOwner(uint256 tokenId) {
+        require(
+            tokenOwner[tokenId],
+            "Only the owner of this token can access it."
+        );
+        _;
+    }
+
+    // Differential security system
 
     mapping(uint256 => uint256) seedMap;
 
@@ -62,7 +76,7 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
         uint256 seed,
         metaData memory mD,
         string memory uri
-    ) public onlyOwner {
+    ) public onlyTokenOwner {
         seedMap[tokenId] = seed;
         metaDataMap[tokenId] = mD;
         _setTokenURI(tokenId, uri);
@@ -79,7 +93,6 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
     function getMetaData(uint256 tokenId)
         public
         view
-        onlyOwner
         returns (metaData memory)
     {
         return metaDataMap[tokenId];
