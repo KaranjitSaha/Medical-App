@@ -88,7 +88,7 @@ body {
 }
 
 .partnerBox{
-  position: absolute;
+  position: relative;
   width: 1440px;
   height: 250px;
   background-color:#E2EDFF
@@ -209,4 +209,46 @@ flex-grow: 0;
   font-weight: 550;
   font-size: x-large;
   padding-bottom: 3rem;
+}
+
+.feature-box {
+  margin-top: 7rem;
+  display: flex;
+  /* justify-content: space-between; */
+}
+
+.feature-title {
+  font-family: 'Courier Prime', monospace;
+  font-family: 'Open Sans', sans-serif;
+font-style: normal;
+font-weight: 600;
+font-size: 40px;
+line-height: 48px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+
+/* dark */
+
+color: #031432;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+margin-left: 14rem;
+}
+
+.feature-desc {
+  text-align: center;
+  font-family: 'Courier Prime', monospace;
+  font-family: 'Open Sans', sans-serif;
+  margin-left: 50px;
+  margin-right: 64px;;
+  font-weight: normal;
+  color: #6C87AE;
+  font-size: 20px;
 }
