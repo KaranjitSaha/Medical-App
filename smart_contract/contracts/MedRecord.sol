@@ -29,10 +29,10 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
         metaData memory mD
     ) public {
         require(!usedTokenId[tokenId], "Token Id already in use.");
+        tokenOwner[tokenId] = msg.sender;
         _safeMint(msg.sender, tokenId);
         updateSeed(tokenId, seed, mD, uri);
         tokenList[msg.sender].push(tokenId);
-        tokenOwner[tokenId] = msg.sender;
     }
 
     function _burn(uint256 tokenId)
