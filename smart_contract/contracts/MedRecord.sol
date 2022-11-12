@@ -77,6 +77,11 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
         _;
     }
 
+    modifier onlyOldUser() {
+        require(signedUp[msg.sender], "This user already exists.");
+        _;
+    }
+
     function preSignUp(uint256 seed) public onlyNewUser {
         passCheckSeed[msg.sender] = seed;
     }
@@ -87,10 +92,15 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
 
     function signUp(string memory passHash) public onlyNewUser {
         passCheckHash[msg.sender] = passHash;
+        signedUp[msg.sender] = true;
     }
 
     function getPassCheckHash() public view returns (string memory) {
         return passCheckHash[msg.sender];
+    }
+
+    function updatePassword(string memory passHash) public onlyOldUser {
+        passCheckHash[msg.sender] = passHash;
     }
 
     // Differential security system

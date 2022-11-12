@@ -73,7 +73,7 @@ async function signUp(medRecord, user, password) {
     seed = getRandom256()
     medRecord.connect(user).preSignUp(seed)
     passCheckHash = Hash(password + seed)
-    medRecord.connect(user).signUp(passCheckHash)
+    medRecord.connect(user).updatePassword(passCheckHash)
 }
 
 async function signIn(medRecord, user, password) {
@@ -83,7 +83,17 @@ async function signIn(medRecord, user, password) {
     return passCheckHash1 == passCheckHash2
 }
 
-exports.mintMedRecord = mintMedRecord;
+async function updatePassword(medRecord, user, password, new_pass) {
+    seed = medRecord.connect(user).getUserSeed()
+    passCheckHash1 = Hash(password + seed)
+    passCheckHash2 = medRecord.connect(user).getPassCheckHash()
+    if (passCheckHash1 == passCheckHash2) {
+        newPassHash = Hash(new_pass + seed)
+        medRecord.connect(user).updatePassword(newPassHash)
+    }
+}
+
+exports.mintMedRecord = mintMedRecord
 exports.getCurrentTime = getCurrentTime
 exports.mintMedRecord = mintMedRecord
 exports.getURI = getURI
@@ -91,3 +101,6 @@ exports.getTokenList = getTokenList
 exports.updateSeed = updateSeed
 exports.getSeed = getSeed
 exports.getMetaData = getMetaData
+exports.signIn = signIn
+exports.signUp = signUp
+exports.updatePassword = updatePassword
