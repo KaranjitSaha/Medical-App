@@ -1,5 +1,4 @@
-import { getURI, updateSeed, getMetaData, getSeed } from "./interface.js"
-import { Encrypt, getRandom256, Hash } from "./MiscMath.js"
+const { Encrypt, getRandom256, Hash } = require("./MiscMath.js")
 
 function getPassHash(seed, password) {
     return Hash(seed.toString() + password)
