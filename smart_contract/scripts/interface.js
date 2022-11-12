@@ -17,6 +17,7 @@ async function mintMedRecord(medRecord, user, URI, metadata, password) {
     metadata.issue = encrypt(seed, password, metadata.issue)
     metadata.name = encrypt(seed, password, metadata.name)
     metadata.extension = encrypt(seed, password, metadata.extension)
+    metadata.doctorName = encrypt(seed, password, metadata.doctorName)
     URI = encrypt(seed, password, URI)
     await medRecord.connect(user).safeMint(tokenID, URI, seed, metadata);
 }
@@ -38,6 +39,7 @@ async function updateSeed(medRecord, user, tokID, password) {
     metadata.issue = decrypt(seed, password, metadata.issue)
     metadata.name = decrypt(seed, password, metadata.name)
     metadata.extension = decrypt(seed, password, metadata.extension)
+    metadata.doctorName = decrypt(seed, password, metadata.doctorName)
     uri = decrypt(seed, password, uri)
     seed = getRandom256()
     metadata.time = encrypt(seed, password, metadata.time)
@@ -45,6 +47,7 @@ async function updateSeed(medRecord, user, tokID, password) {
     metadata.issue = encrypt(seed, password, metadata.issue)
     metadata.name = encrypt(seed, password, metadata.name)
     metadata.extension = encrypt(seed, password, metadata.extension)
+    metadata.doctorName = encrypt(seed, password, metadata.doctorName)
     uri = encrypt(seed, password, uri)
     await medRecord.connect(user).updateSeed(tokID, seed, metaData, URI)
 }
@@ -62,6 +65,7 @@ async function getMetaData(medRecord, tokID) {
     metadata.issue = decrypt(seed, password, metadata.issue)
     metadata.name = decrypt(seed, password, metadata.name)
     metadata.extension = decrypt(seed, password, metadata.extension)
+    metadata.doctorName = decrypt(seed, password, metadata.doctorName)
     return await metadata
 }
 exports.mintMedRecord = mintMedRecord;

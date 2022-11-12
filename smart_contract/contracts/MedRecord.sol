@@ -12,11 +12,12 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
     ////BASIC NFT FUNCTIONS
 
     struct metaData {
-        string time;
-        string group;
-        string issue;
-        string name;
-        string extension;
+        string time; //Last time the seed was renewed (Access Revoked)
+        string group; //The type of document
+        string issue; //Time of issue of document
+        string name; //Name of document
+        string extension; //Extensoin of file
+        string doctorName; //Doctor Name
     }
 
     mapping(uint256 => bool) usedTokenId;
