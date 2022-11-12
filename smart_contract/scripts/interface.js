@@ -10,5 +10,21 @@ function getURI(tokID) {
 }
 
 function getTokenList(user) {
+    return medRecord.connect(user).getTokenList()
+}
 
+function updateSeed(user, tokID, seed, metaData, URI) {
+    medRecord.connect(user).updateSeed(tokID, seed, metaData, URI)
+}
+
+function getSeed(tokID) {
+    medRecord.getSeed(tokID)
+}
+
+function getCurrentTime() {
+    return medRecord.getCurrentTime()
+}
+
+function getMetaData(tokID) {
+    return medRecord.getMetaData(tokID)
 }
