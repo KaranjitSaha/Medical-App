@@ -760,16 +760,20 @@ export default function SignUpPage() {
 
       <div className="sign-in-flex">
         <div className="signin-img">
-          <img src={require("../assets/signup.png")} alt="rjgbekgn"></img>
+          <img src={require("../assets/signin.png")} alt="rjgbekgn"></img>
         </div>
         <div className="sign-in-form">
           <form>
             <div class="form-group">
               <label class="address" for="exampleInputEmail1">{walletAddress}</label>
             </div>
-            <button type="button" class="btn btn-primary" onClick={connectWallet}>
+            <br />
+            <button type="button" class="btn btn-primary" onClick={connectWallet} style={{marginLeft:10, fontFamily: 'Open Sans'}}>
               Link Metamask Wallet
-            </button> <br />
+            </button> 
+            <br />
+            <br />
+            <label for="exampleInputPassword1" style={{fontFamily: "sans-serif"}}>Enter Password</label>
             <div class="form-group">
               <input
                 type="password"
@@ -777,7 +781,10 @@ export default function SignUpPage() {
                 id="exampleInputPassword1"
                 placeholder="Password"
               />
-              <button type="button" class="btn btn-primary">
+
+              <br />
+              <br />
+              <button type="button" class="btn btn-primary btn-lg" style={{marginLeft:10, backgroundColor: '#4461F2', fontFamily: "Open Sans"}}>
                 Login / Signup
               </button> <br />
             </div>
