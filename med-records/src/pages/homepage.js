@@ -3,6 +3,7 @@ import React from "react";
 // import {Link} from 'react-router-dom'
 import "./homepage.css";
 import Footer from '../components/Footer'
+import Modal from '../components/Modal';
 const homepage = () => {
   return (
     <div>
@@ -38,7 +39,7 @@ const homepage = () => {
           </p>
           <button className="get-started">Get Started</button>
         </div>
-        <div className="home-img" style={{marginLeft:200}}>
+        <div className="home-img" style={{ marginLeft: 200 }}>
           <img
             src={require("../assets/HomePageDoctor.png")}
             alt="rjgbekgn"
@@ -58,15 +59,22 @@ const homepage = () => {
         </div>
       </div>
       <div>
-      <div className="home-img" style={{ marginLeft: 240 }}>
+        <div className="home-img" style={{ marginLeft: 240 }}>
           <img src={require("../assets/Testimonials.png")} alt="rjgbekgn"></img>
         </div>
       </div>
       < Footer />
+
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+      </button>
+      <Modal id="exampleModal" title="Kaam Kr gya bc!!"></Modal>
     </div>
 
+
+
     // footer code
-    
+
   );
 };
 

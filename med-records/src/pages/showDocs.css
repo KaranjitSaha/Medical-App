@@ -12,7 +12,26 @@ background-color: #F2F7FF;
 
 .card-section {
     margin-top: 2rem;
-    margin-left: 4rem
+    margin-left: 4rem;
+    display:flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    
 }
 
-.
+.btn-share {
+    background-image: url("../assets/Share.png");
+    background-size: cover;
+    width: 200px;
+    height: 200px;
+    display:block;
+}
+
+#share-btn {
+    /* width: 60px; */
+    /* height: 60px; */
+    background-image: url('../assets/Share.png');
+    /* background-size: cover; */
+    /* background-color: #eee; */
+}
