@@ -1,42 +1,44 @@
 import process from 'process'
-import minimist from 'minimist'
 import { Web3Storage, getFilesFromPath } from 'web3.storage'
 import * as dotenv from 'dotenv'
 dotenv.config()
 const token = process.env.WEB3_STORAGE_KEY
 
-// async function main (args) { //args is an array and iska arg[0] contains
-//   const args = minimist(process.argv.slice(2))
-//   console.log(args)
+const Web3Client = new Web3Storage({ token: token })
 
-//   if (!token) {
-//     return console.error('A token is needed. You can create one on https://web3.storage')
-//   }
-
-//   if (args._.length < 1) {
-//     return console.error('Please supply the path to a file or directory')
-//   }
-
-//   const storage = new Web3Storage({ token })
-//   const files = []
-
-//   for (const path of args._) {
-//     const pathFiles = await getFilesFromPath(path)
-//     files.push(...pathFiles)
-//   }
-
-//   console.log(`Uploading ${files.length} files`)
-//   const cid = await storage.put(files)
-//   console.log('Content added with CID:', cid)
-// }
-// Construct with token and endpoint
-const client = new Web3Storage({ token: token });
-
-const res = await client.get("bafybeighndw3lla25kcsij2kbt7rw4it24tyrk732ce4bpxgwlrcblyxra"); // Web3Response
-const files = await res.files(); // Web3File[]
-for (const file of files) {
-  file.arrayBuffer().then(data=>console.log(data));
+function retrieveFileFromIPFS(cid,filename){
+  return cid + ".ipfs.w3s.link" +"/"+filename
 }
 
+async function uploadFileIPFSWithProgress(filePath){
 
-// main()
+  const files = []
+
+  const pathFiles = await getFilesFromPath(filePath)
+  files.push(...pathFiles)
+
+
+  // show the root cid as soon as it's ready
+  const onRootCidReady = cid => {
+    console.log('uploading files with cid:', cid)
+  }
+
+  // when each chunk is stored, update the percentage complete and display
+  const totalSize = files.map(f => f.size).reduce((a, b) => a + b, 0)
+  let uploaded = 0
+
+  const onStoredChunk = size => {
+    uploaded += size
+    const pct = 100 * (uploaded / totalSize)
+    console.log(`Uploading... ${pct.toFixed(2)}% complete`)
+  }
+
+  // makeStorageClient returns an authorized web3.storage client instance
+  const cid = await Web3Client.put(files,{ onRootCidReady, onStoredChunk})
+  console.log('stored file with cid: ',cid)
+  return cid
+}
+
+let cid = await uploadFileIPFSWithProgress("test.pdf")
+let linkToOpen = retrieveFileFromIPFS(cid,"test.pdf")
+console.log(linkToOpen)
