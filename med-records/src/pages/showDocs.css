@@ -12,5 +12,29 @@ background-color: #F2F7FF;
 
 .card-section {
     margin-top: 2rem;
-    margin-left: 4rem
+    margin-left: 4rem;
+    display:flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    
 }
+<<<<<<< HEAD
+=======
+
+.btn-share {
+    background-image: url("../assets/Share.png");
+    background-size: cover;
+    width: 200px;
+    height: 200px;
+    display:block;
+}
+
+#share-btn {
+    /* width: 60px; */
+    /* height: 60px; */
+    background-image: url('../assets/Share.png');
+    /* background-size: cover; */
+    /* background-color: #eee; */
+}
+>>>>>>> 8b9df9243f2a785e1c0e0c72208c97f280ce95b6
