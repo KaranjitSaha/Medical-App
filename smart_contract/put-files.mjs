@@ -6,6 +6,7 @@ const token = process.env.WEB3_STORAGE_KEY
 
 const Web3Client = new Web3Storage({ token: token })
 
+export {retrieveFileFromIPFS, uploadFileIPFSWithProgress}
 function retrieveFileFromIPFS(cid,filename){
   return cid + ".ipfs.w3s.link" +"/"+filename
 }
@@ -39,6 +40,7 @@ async function uploadFileIPFSWithProgress(filePath){
   return cid
 }
 
-let cid = await uploadFileIPFSWithProgress("test.pdf")
-let linkToOpen = retrieveFileFromIPFS(cid,"test.pdf")
-console.log(linkToOpen)
+// TESTING FUNCTIONS
+// let cid = await uploadFileIPFSWithProgress("test.pdf")
+// let linkToOpen = retrieveFileFromIPFS(cid,"test.pdf")
+// console.log(linkToOpen)
