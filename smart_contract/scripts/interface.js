@@ -16,6 +16,7 @@ async function mintMedRecord(medRecord, user, URI, metadata, password) {
     metadata.group = encrypt(seed, password, metadata.group)
     metadata.issue = encrypt(seed, password, metadata.issue)
     metadata.name = encrypt(seed, password, metadata.name)
+    metadata.extension = encrypt(seed, password, metadata.extension)
     URI = encrypt(seed, password, URI)
     await medRecord.connect(user).safeMint(tokenID, URI, seed, metadata);
 }
@@ -36,12 +37,14 @@ async function updateSeed(medRecord, user, tokID, password) {
     metadata.group = decrypt(seed, password, metadata.group)
     metadata.issue = decrypt(seed, password, metadata.issue)
     metadata.name = decrypt(seed, password, metadata.name)
+    metadata.extension = decrypt(seed, password, metadata.extension)
     uri = decrypt(seed, password, uri)
     seed = getRandom256()
     metadata.time = encrypt(seed, password, metadata.time)
     metadata.group = encrypt(seed, password, metadata.group)
     metadata.issue = encrypt(seed, password, metadata.issue)
     metadata.name = encrypt(seed, password, metadata.name)
+    metadata.extension = encrypt(seed, password, metadata.extension)
     uri = encrypt(seed, password, uri)
     await medRecord.connect(user).updateSeed(tokID, seed, metaData, URI)
 }

@@ -16,6 +16,7 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
         string group;
         string issue;
         string name;
+        string extension;
     }
 
     mapping(uint256 => bool) usedTokenId;
