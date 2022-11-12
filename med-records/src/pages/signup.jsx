@@ -8,34 +8,13 @@ import { getCurrentTime, signIn } from "../logic/interface";
 import abi_text from "./abi.json"
 
 
-export default function SignUpPage() {
+export default function SignUpPage(props) {
   const [walletAddress, setWalletAddress] = useState("No Address")
   const [password, setPassword] = useState("")
-  const [medRecord, setMedRecord] = useState("")
-  const [signer, setSigner] = useState("")
 
   let provider;
 
   let abi = abi_text
-
-  // async function requestAccount() {
-  //   console.log("Requesting account ....")
-  //   // Checking if Meta Mask Extension is existing
-  //   if(window.ethereum) {
-  //     console.log('Meta Mask is detected');
-
-  //     try {
-  //       const accounts = await window.ethereum.request({
-  //         method: "eth_requestAccounts",
-  //       });
-  //       setWalletAddress(accounts)
-  //     } catch (error) {
-  //       console.log("Error connecting ...")
-  //     }
-  //   } else {
-  //     console.log('Meta Mask not detected');
-  //   }
-  // }
 
   async function connectWallet() {
     if (typeof window.ethereum !== 'undefined') {
@@ -43,21 +22,21 @@ export default function SignUpPage() {
 
       await provider.send("eth_requestAccounts", []);
       let sgn = provider.getSigner()
-      setSigner(sgn)
+      props.setSigner(sgn)
       setWalletAddress(await sgn.getAddress())
 
-      setMedRecord(new ethers.Contract("0x5fbdb2315678afecb367f032d93f642f64180aa3", abi, provider))
+      props.setMedRecord(new ethers.Contract("0x5fbdb2315678afecb367f032d93f642f64180aa3", abi, provider))
     }
   }
 
   async function login() {
-    if (medRecord === "") {
+    if (props.medRecord === "") {
       console.log("MedRecord Error")
     }
-    if(signer === "") {
+    if(props.signer === "") {
       console.log("Signer Error")
     }
-    let result = await signIn(medRecord, signer, password)
+    let result = await signIn(props.medRecord, props.signer, password)
     // let result = await getCurrentTime(medRecord, signer)
     console.log(result)
   }
@@ -98,7 +77,7 @@ export default function SignUpPage() {
 
               <br />
               <br />
-              <button type="button" class="btn btn-primary btn-lg" style={{marginLeft:10, backgroundColor: '#4461F2', fontFamily: "Open Sans"}}>
+              <button type="button" class="btn btn-primary btn-lg" style={{marginLeft:10, backgroundColor: '#4461F2', fontFamily: "Open Sans"}} onClick={login}>
                 Login / Signup
               </button> <br />
             </div>

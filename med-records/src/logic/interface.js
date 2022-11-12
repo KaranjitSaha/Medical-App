@@ -83,8 +83,8 @@ async function signIn(medRecord, user, password) {
     else{
         let passCheckHash1 = aesjs.utils.hex.fromBytes(Hash(password + seed))
         let passCheckHash2 = await medRecord.connect(user).getPassCheckHash()
-        console.log(passCheckHash1)
-        console.log(passCheckHash2)
+        // console.log(passCheckHash1)
+        // console.log(passCheckHash2)
         return passCheckHash1 == passCheckHash2
     }
 }
