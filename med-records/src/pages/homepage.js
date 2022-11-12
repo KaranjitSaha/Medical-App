@@ -2,13 +2,14 @@ import React from "react";
 // import ReactDOM from 'react-dom';
 // import {Link} from 'react-router-dom'
 import "./homepage.css";
+import {Link} from 'react-scroll'
 import Footer from '../components/Footer'
 import Modal from '../components/Modal';
 import {useNavigate} from 'react-router-dom'
 const Homepage = () => {
 
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const signupHandler = (e) => {
     e.preventDefault();
@@ -26,9 +27,17 @@ const Homepage = () => {
         </div>
 
         <div className="options">
-          <div className="option">Home</div>
-          <div className="option">About Us</div>
-          <div className="option">Reviews</div>
+          <a href="/">
+            <div className="option">Home</div>
+          </a>
+          <a href="">
+            <Link to="about-us" spy={true} className="option">About Us</Link>
+          </a>
+          {/* <div Link to="about-us"/ spy={true} smooth={true} className="option">About Us</div> */}
+          {/* <div className="option">Reviews</div> */}
+          <a href="">
+            <Link to="reviews" spy={true} className="option">Reviews</Link>
+          </a>
         </div>
 
         <button type="button" className="login-btn" onClick={signupHandler}>
@@ -57,20 +66,20 @@ const Homepage = () => {
         </div>
       </div>
 
-      <div className="partnerBox">
-        <div className="partners"></div>
+      <div className="partnerBox" >
+        <div className="partners" ></div>
         <div className="home-img" style={{ marginLeft: 120 }}>
           <img src={require("../assets/Partners.png")} alt="rjgbekgn"></img>
         </div>
       </div>
-      <div className="feature-box">
+      <div className="feature-box" id="about-us">
         <div className="home-img" style={{ marginLeft: 120 }}>
           <img src={require("../assets/Features.png")} alt="rjgbekgn"></img>
         </div>
       </div>
       <div>
         <div className="home-img" style={{ marginLeft: 240 }}>
-          <img src={require("../assets/Testimonials.png")} alt="rjgbekgn"></img>
+          <img src={require("../assets/Testimonials.png")} alt="rjgbekgn" id="reviews"></img>
         </div>
       </div>
       < Footer />

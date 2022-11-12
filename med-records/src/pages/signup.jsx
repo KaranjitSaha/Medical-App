@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar';
 import { useState } from "react";
 import { ethers } from "ethers";
 import { getCurrentTime } from "../logic/interface";
-
+import { useNavigate } from "react-router-dom";
 
 export default function SignUpPage() {
   const [walletAddress, setWalletAddress] = useState("No Address")
@@ -721,6 +721,13 @@ export default function SignUpPage() {
     }
   ]
 
+  const navigate = useNavigate();
+
+  const showDocsHandler = (e) => {
+    e.preventDefault();
+    navigate('/showDocs');
+  }
+
   // async function requestAccount() {
   //   console.log("Requesting account ....")
   //   // Checking if Meta Mask Extension is existing
@@ -784,7 +791,7 @@ export default function SignUpPage() {
 
               <br />
               <br />
-              <button type="button" class="btn btn-primary btn-lg" style={{marginLeft:10, backgroundColor: '#4461F2', fontFamily: "Open Sans"}}>
+              <button type="button" class="btn btn-primary btn-lg" style={{marginLeft:10, backgroundColor: '#4461F2', fontFamily: "Open Sans"}} onClick={showDocsHandler}>
                 Login / Signup
               </button> <br />
             </div>
