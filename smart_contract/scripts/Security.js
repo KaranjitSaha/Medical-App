@@ -13,3 +13,6 @@ function decrypt(seed, password, data) {
     key = getPassHash(seed, password)
     return Decrypt(data, key)
 }
+
+exports.encrypt = encrypt;
+exports.decrypt = decrypt;
