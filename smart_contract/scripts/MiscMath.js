@@ -1,6 +1,8 @@
 const { BigNumber } = require('ethers')
 const CryptoJS = require("crypto-js")
 const { createHash } = require('crypto');
+const aesjs = require('aes-js');
+const sha256 = require('js-sha256');
 
 getRandom16 = function () {
     let rand = 1 << 16;
@@ -9,8 +11,21 @@ getRandom16 = function () {
 }
 exports.getRandom16 = getRandom16
 
-exports.split16 = function (bgn) {
+split16 = function (bgn) {
     let base = 1 << 16;
+    split = [];
+    while (!bgn.isEqualTo(0)) {
+        sha256 = require('js-sha256');
+
+        split.push((bgn.modulo(base)).toNumber());
+        bgn = bgn.dividedToIntegerBy(base);
+    }
+    return split;
+}
+exports.split16 = this.split16
+
+split8 = function (bgn) {
+    let base = 1 << 8;
     split = [];
     while (!bgn.isEqualTo(0)) {
         split.push((bgn.modulo(base)).toNumber());
@@ -18,6 +33,7 @@ exports.split16 = function (bgn) {
     }
     return split;
 }
+exports.split16 = this.split16
 
 combine16 = function (rnd) {
     var out = BigNumber.from(0)
@@ -41,14 +57,28 @@ exports.getRandom256 = function () {
     return combine16(arr);
 }
 
-exports.Encrypt = function (object, hash) {
-    return CryptoJS.AES.encrypt(JSON.stringify(object), hash.toString()).toString();
+Encrypt = function (object, hash) {
+    // return CryptoJS.AES.encrypt(JSON.stringify(object), hash.toString()).toString();
+    var textBytes = aesjs.utils.utf8.toBytes(object.toString());
+    var aesCtr = new aesjs.ModeOfOperation.ctr(hash);
+    var encryptedBytes = aesCtr.encrypt(textBytes);
+    var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
+    return encryptedHex;
 }
+exports.Encrypt = Encrypt
 
-exports.Decrypt = function (cipherText, hash) {
-    return CryptoJS.AES.decrypt(cipherText, hash.toString()).toString(CryptoJS.enc.Utf8);
+Decrypt = function (cipherText, hash) {
+    // return CryptoJS.AES.decrypt(cipherText, hash.toString()).toString(CryptoJS.enc.Utf8);
+    var encryptedBytes = aesjs.utils.hex.toBytes(cipherText);
+    var aesCtr = new aesjs.ModeOfOperation.ctr(hash);
+    var decryptedBytes = aesCtr.decrypt(encryptedBytes);
+    var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes);
+    return decryptedText;
 }
+exports.Decrypt = this.Decrypt
 
-exports.Hash = function (plainText) {
-    return createHash('sha256').update(plainText).digest('hex');
+Hash = function (plainText) {
+    // return createHash('sha256').update(plainText).digest('hex');
+    return sha256.array(plainText);
 }
+exports.Hash = Hash
