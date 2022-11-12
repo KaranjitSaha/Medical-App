@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import {
 	BrowserRouter as Router,
@@ -7,6 +7,8 @@ import {
 	Navigate
 } from 'react-router-dom';
 import Homepage from './pages/homepage'
+// import CollapsibleExample from './pages/Navbar';
+
 function App() {
   return (
     <Router className="App">
