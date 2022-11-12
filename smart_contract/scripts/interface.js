@@ -56,7 +56,13 @@ async function getSeed(medRecord, tokID) {
 
 
 async function getMetaData(medRecord, tokID) {
-    return await medRecord.getMetaData(tokID)
+    metadata = medRecord.connect(user).getMetaData(tokID)
+    metadata.time = decrypt(seed, password, metadata.time)
+    metadata.group = decrypt(seed, password, metadata.group)
+    metadata.issue = decrypt(seed, password, metadata.issue)
+    metadata.name = decrypt(seed, password, metadata.name)
+    metadata.extension = decrypt(seed, password, metadata.extension)
+    return await metadata
 }
 exports.mintMedRecord = mintMedRecord;
 exports.getCurrentTime = getCurrentTime
