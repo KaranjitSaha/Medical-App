@@ -1,7 +1,7 @@
 import "./homepage.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "./signin.css";
-export default function SignInPage() {
+export default function SignUpPage() {
   return (
     <div className="signin-page">
       <nav class="navbar navbar-expand-lg bg-light">
@@ -38,7 +38,7 @@ export default function SignInPage() {
 
       <div className="sign-in-flex">
         <div className="signin-img">
-          <img src={require("../assets/signin.png")} alt="rjgbekgn"></img>
+          <img src={require("../assets/signup.png")} alt="rjgbekgn"></img>
         </div>
         <div className="sign-in-form">
           <form>
@@ -74,9 +74,10 @@ export default function SignInPage() {
                 Check me out
               </label>
             </div>
-            <button type="submit" class="btn btn-primary">
-              Submit
-            </button>
+            <button type="button" class="btn btn-primary">
+              Link Metamask Wallet
+            </button> <br />
+            <button type="submit" class="btn btn-primary" style={{marginTop: 40}}> Create Account</button>
           </form>
         </div>
       </div>

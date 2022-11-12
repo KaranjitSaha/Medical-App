@@ -15,3 +15,8 @@
     flex-direction: row;
 
 }
+
+.sign-in-form {
+    margin-top: 6rem;
+    margin-left: 8rem;
+}
