@@ -4,7 +4,9 @@ import "./signin.css";
 import Navbar from '../components/Navbar';
 import { useState } from "react";
 import { ethers } from "ethers";
-import { getCurrentTime, signIn } from "../logic/interface";
+// import { getCurrentTime } from "../logic/interface";
+import { useNavigate } from "react-router-dom";
+import {getCurrentTime, signIn } from "../logic/interface";
 import abi_text from "./abi.json"
 
 
