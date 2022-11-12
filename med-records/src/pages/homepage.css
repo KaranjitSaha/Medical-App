@@ -1,0 +1,62 @@
+body {
+  background-color: #f2f7ff;
+}
+
+.navbar {
+  margin-top: 1.5rem;
+  display: flex;
+}
+
+.navbar .app-title {
+  margin-left: 5rem;
+  font-size: x-large;
+  /* font-weight: bold; */
+  /* background: rgb(58,142,246);
+    background: linear-gradient(45deg, rgba(58,142,246,1) 0%, rgba(111,58,250,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+  /* font-family: "Sora";
+   */
+   font-family: 'Courier Prime', monospace;
+font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+
+
+  /* Gradient 1 */
+
+  background: linear-gradient(96.14deg, #3a8ef6 -10.84%, #6f3afa 196.74%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.logo {
+    background: linear-gradient(96.14deg, #3A8EF6 -10.84%, #6F3AFA 196.74%);
+    box-shadow: 0px 4px 19px rgba(22, 120, 242, 0.2), inset 0px 4px 4px rgba(0, 0, 0, 0.12);
+}
+
+.logo { 
+    width: 1.2rem;
+    height: 1.2rem;
+    background: blue; 
+    background: linear-gradient(96.14deg, #3A8EF6 -10.84%, #6F3AFA 196.74%);
+box-shadow: 0px 4px 19px rgba(22, 120, 242, 0.2), inset 0px 4px 4px rgba(0, 0, 0, 0.12);
+    border-radius: 70px;
+ }
+
+ .plus{
+        position:relative;
+        border: 1px dotted white;
+        width: 3px;
+        height: 3px;
+        background-color: black;
+        box-sizing: border-box;
+        transform: scale(11);
+      
+ }
