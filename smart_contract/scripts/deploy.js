@@ -6,6 +6,8 @@
 // global scope, and execute the script.
 const hre = require("hardhat");
 
+export let medRecord;
+
 async function main() {
   const currentTimestampInSeconds = Math.round(Date.now() / 1000);
   const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
@@ -17,6 +19,11 @@ async function main() {
   const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
 
   await lock.deployed();
+
+  const MedRecord = await hre.ethers.getContractFactory("MedRecord")
+  const medRecord = await MedRecord.deploy()
+
+  console.log(medRecord.address)
 
   console.log(
     `Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`

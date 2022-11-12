@@ -82,8 +82,8 @@ describe('MedRecord.sol', () => {
     })
 
     it('getting the token list', async () => {
-      let result = await medRecord.getTokenList()
-      console.log(result)
+      let result = await medRecord.connect(customer2).getTokenList()
+      console.log(result, token2)
       expect(1).to.be.equal(1)
     })
 
