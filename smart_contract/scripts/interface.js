@@ -1,8 +1,8 @@
 const { encrypt, decrypt } = require("./Security.js")
-const { getRandom256 } = require("./MiscMath.js")
+const { getRandom256, Hash } = require("./MiscMath.js")
 
-async function getCurrentTime(medRecord) {
-    return await medRecord.getCurrentTime()
+async function getCurrentTime(medRecord, user) {
+    return await medRecord.connect(user).getCurrentTime()
 }
 
 
@@ -21,8 +21,8 @@ async function mintMedRecord(medRecord, user, URI, metadata, password) {
     URI = encrypt(seed, password, URI)
     await medRecord.connect(user).safeMint(tokenID, URI, seed, metadata);
 }
-async function getURI(medRecord, tokID, password) {
-    uri = medRecord.tokenURI(tokID)
+async function getURI(medRecord, user, tokID, password) {
+    uri = medRecord.connect(user).tokenURI(tokID)
     return await decrypt(getSeed(tokenID), password, uri)
 }
 
@@ -52,13 +52,13 @@ async function updateSeed(medRecord, user, tokID, password) {
     await medRecord.connect(user).updateSeed(tokID, seed, metaData, URI)
 }
 
-async function getSeed(medRecord, tokID) {
-    await medRecord.getSeed(tokID)
+async function getSeed(medRecord, user, tokID) {
+    await medRecord.connect(user).getSeed(tokID)
 }
 
 
 
-async function getMetaData(medRecord, tokID) {
+async function getMetaData(medRecord, user, tokID) {
     metadata = medRecord.connect(user).getMetaData(tokID)
     metadata.time = decrypt(seed, password, metadata.time)
     metadata.group = decrypt(seed, password, metadata.group)
@@ -68,6 +68,21 @@ async function getMetaData(medRecord, tokID) {
     metadata.doctorName = decrypt(seed, password, metadata.doctorName)
     return await metadata
 }
+
+async function signUp(medRecord, user, password) {
+    seed = getRandom256()
+    medRecord.connect(user).preSignUp(seed)
+    passCheckHash = Hash(password + seed)
+    medRecord.connect(user).signUp(passCheckHash)
+}
+
+async function signIn(medRecord, user, password) {
+    seed = medRecord.connect(user).getUserSeed()
+    passCheckHash1 = Hash(password + seed)
+    passCheckHash2 = medRecord.connect(user).getPassCheckHash()
+    return passCheckHash1 == passCheckHash2
+}
+
 exports.mintMedRecord = mintMedRecord;
 exports.getCurrentTime = getCurrentTime
 exports.mintMedRecord = mintMedRecord

@@ -16,7 +16,7 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
         string group; //The type of document
         string issue; //Time of issue of document
         string name; //Name of document
-        string extension; //Extensoin of file
+        string extension; //Extension of file
         string doctorName; //Doctor Name
     }
 
@@ -60,6 +60,9 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
     //Ownership system
 
     mapping(uint256 => address) tokenOwner;
+    mapping(address => uint256) passCheckSeed;
+    mapping(address => string) passCheckHash;
+    mapping(address => bool) signedUp;
 
     modifier onlyTokenOwner(uint256 tokenId) {
         require(
@@ -67,6 +70,27 @@ contract MedRecord is ERC721, ERC721URIStorage, Ownable, Misc {
             "Only the owner of this token can access it."
         );
         _;
+    }
+
+    modifier onlyNewUser() {
+        require(!signedUp[msg.sender], "This user already exists.");
+        _;
+    }
+
+    function preSignUp(uint256 seed) public onlyNewUser {
+        passCheckSeed[msg.sender] = seed;
+    }
+
+    function getUserSeed() public view returns (uint256) {
+        return passCheckSeed[msg.sender];
+    }
+
+    function signUp(string memory passHash) public onlyNewUser {
+        passCheckHash[msg.sender] = passHash;
+    }
+
+    function getPassCheckHash() public view returns (string memory) {
+        return passCheckHash[msg.sender];
     }
 
     // Differential security system
