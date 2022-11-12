@@ -1,0 +1,18 @@
+.whole-page {
+display: flex;
+background-color: #F2F7FF;
+}
+
+.doc-buttons{
+    padding-left:20px;
+    padding-top: 20rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-section {
+    margin-top: 2rem;
+    margin-left: 4rem
+}
+
+.
