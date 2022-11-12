@@ -83,14 +83,9 @@ async function signIn(medRecord, user, password) {
     return passCheckHash1 == passCheckHash2
 }
 
-async function updatePassword(medRecord, user, password, new_pass) {
-    seed = medRecord.connect(user).getUserSeed()
-    passCheckHash1 = Hash(password + seed)
-    passCheckHash2 = medRecord.connect(user).getPassCheckHash()
-    if (passCheckHash1 == passCheckHash2) {
-        newPassHash = Hash(new_pass + seed)
-        medRecord.connect(user).updatePassword(newPassHash)
-    }
+async function updatePassword(medRecord, user, new_pass) {
+    newPassHash = Hash(new_pass + seed)
+    medRecord.connect(user).updatePassword(newPassHash)
 }
 
 exports.mintMedRecord = mintMedRecord
