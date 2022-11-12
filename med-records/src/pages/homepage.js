@@ -4,7 +4,17 @@ import React from "react";
 import "./homepage.css";
 import Footer from '../components/Footer'
 import Modal from '../components/Modal';
-const homepage = () => {
+import {useNavigate} from 'react-router-dom'
+const Homepage = () => {
+
+
+  const navigate = useNavigate()
+
+  const signupHandler = (e) => {
+    e.preventDefault();
+    navigate('/signup')
+  }
+
   return (
     <div>
       <div className="navbar">
@@ -21,7 +31,7 @@ const homepage = () => {
           <div className="option">Reviews</div>
         </div>
 
-        <button type="button" className="login-btn">
+        <button type="button" className="login-btn" onClick={signupHandler}>
           Login/ Register
         </button>
       </div>
@@ -37,7 +47,7 @@ const homepage = () => {
             A Web3 based platform for storing all your medical records and bills
             at one place.
           </p>
-          <button className="get-started">Get Started</button>
+          <button className="get-started" onClick={signupHandler}>Get Started</button>
         </div>
         <div className="home-img" style={{ marginLeft: 200 }}>
           <img
@@ -65,10 +75,10 @@ const homepage = () => {
       </div>
       < Footer />
 
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Launch demo modal
-      </button>
-      <Modal id="exampleModal" title="Kaam Kr gya bc!!"></Modal>
+      </button> */}
+      {/* <Modal id="exampleModal" title="Kaam Kr gya bc!!"></Modal> */}
     </div>
 
 
@@ -78,4 +88,4 @@ const homepage = () => {
   );
 };
 
-export default homepage;
+export default Homepage;
