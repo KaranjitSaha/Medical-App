@@ -2,15 +2,16 @@ import React from "react";
 // import ReactDOM from 'react-dom';
 // import {Link} from 'react-router-dom'
 import "./homepage.css";
+import Footer from '../components/Footer'
 const homepage = () => {
   return (
     <div>
       <div className="navbar">
         <div className="home-btn">
           <div className="app-title">MedRecords</div>
-          <div className="logo"></div>
+          {/* <div className="logo"></div> */}
           {/* <div className='plus'></div> */}
-          <span className="plus">&#43;</span>
+          {/* <span className="plus">&#43;</span> */}
         </div>
 
         <div className="options">
@@ -37,7 +38,7 @@ const homepage = () => {
           </p>
           <button className="get-started">Get Started</button>
         </div>
-        <div className="home-img">
+        <div className="home-img" style={{marginLeft:200}}>
           <img
             src={require("../assets/HomePageDoctor.png")}
             alt="rjgbekgn"
@@ -47,21 +48,25 @@ const homepage = () => {
 
       <div className="partnerBox">
         <div className="partners"></div>
-        <div className="home-img" style={{ marginLeft: 160 }}>
+        <div className="home-img" style={{ marginLeft: 120 }}>
           <img src={require("../assets/Partners.png")} alt="rjgbekgn"></img>
         </div>
       </div>
       <div className="feature-box">
-        <div className="feature-title">What you can store?</div>
-        <div className="feature-desc">
-          Here at MedRecords you can store all your medical related documents
-          and reports. Be it your precriptions, your X-ray reports, your medical
-          bills, every document can be stored on the blockchain. Documents
-          stored will be tamper proof and permanent. Be assured!
+        <div className="home-img" style={{ marginLeft: 120 }}>
+          <img src={require("../assets/Features.png")} alt="rjgbekgn"></img>
         </div>
       </div>
-      <div></div>
+      <div>
+      <div className="home-img" style={{ marginLeft: 240 }}>
+          <img src={require("../assets/Testimonials.png")} alt="rjgbekgn"></img>
+        </div>
+      </div>
+      < Footer />
     </div>
+
+    // footer code
+    
   );
 };
 

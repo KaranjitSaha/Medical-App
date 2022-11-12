@@ -7,7 +7,7 @@ import {
 	Navigate
 } from 'react-router-dom';
 import Homepage from './pages/homepage'
-// import CollapsibleExample from './pages/Navbar';
+import SignInPage from './pages/signin';
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Navigate replace to="/homepage" />}></Route>
         <Route exact path='/homepage' element={< Homepage />}></Route>
+        <Route exact path='/signin' element={< SignInPage />}></Route>
       </Routes>
       
     </Router>

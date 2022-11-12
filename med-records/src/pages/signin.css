@@ -1,0 +1,17 @@
+
+
+.signin-page {
+    background-color: #F2F7FF;
+}
+
+.signin-img {
+    width:60%;
+    height:60%;
+    margin-left: 3rem;
+}
+
+.sign-in-flex {
+    display: flex;
+    flex-direction: row;
+
+}
