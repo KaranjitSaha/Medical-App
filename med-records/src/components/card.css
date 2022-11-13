@@ -1,0 +1,11 @@
+.card {
+    background: rgb(30, 25, 121);
+    background: linear-gradient(90deg, rgba(30, 25, 121, 0.7287289915966386) 17%, rgba(122, 122, 227, 1) 54%);
+    width: 50rem;
+    height: 20rem;
+    margin-left: 25rem;
+    border-radius: 3%;
+    /* perspective: 1px;  */
+    /* align-content: center; */
+
+}
