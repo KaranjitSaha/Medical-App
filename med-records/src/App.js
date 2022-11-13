@@ -17,6 +17,7 @@ function App() {
 
   const [medRecord, setMedRecord] = useState("")
   const [signer, setSigner] = useState("")
+  const [password, setPassword] = useState("")
 
   return (
     <Router className="App">
@@ -24,8 +25,9 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Navigate replace to="/homepage" />}></Route>
         <Route exact path='/homepage' element={< Homepage />}></Route>
-        <Route exact path='/signup' element={< SignUpPage medRecord={medRecord} setMedRecord={setMedRecord} signer={signer} setSigner={setSigner} />}></Route>
-        <Route exact path='/showDocs' element={< ShowDocs />}></Route>
+        <Route exact path='/signup' element={< SignUpPage medRecord={medRecord} setMedRecord={setMedRecord} signer={signer} setSigner={setSigner}
+        password={password} setPassword={setPassword} />}></Route>
+        <Route exact path='/showDocs' element={< ShowDocs medRecord={medRecord} signer={signer} password={password}/>}></Route>
 
       </Routes>
       
