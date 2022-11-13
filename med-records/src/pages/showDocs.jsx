@@ -61,7 +61,7 @@ export default function ShowDocs(props) {
         <div className="doc-buttons">
           <button
             className="btn btn-primary btn-lg"
-            style={{ marginBottom: 10 }}
+            style={{ marginBottom: 30 }}
             onClick={shareDocHandler}
           >
             <i className="fa fa-share-alt" aria-hidden="true"></i>

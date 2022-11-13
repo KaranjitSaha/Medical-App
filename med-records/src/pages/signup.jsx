@@ -1,3 +1,9 @@
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import Button from "@material-ui/core/Button";
 import "./homepage.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "./signin.css";
@@ -12,11 +18,46 @@ import abi_text from "./abi.json"
 
 export default function SignUpPage(props) {
   const [walletAddress, setWalletAddress] = useState("No Address")
-
+  const [password_invalid, setPasswordInvalid] = useState(false)
+  const [open, setOpen] = useState(false);
   let provider;
 
   let abi = abi_text
   const navigate = useNavigate()
+
+
+  // const passInvalidHandler = () =>{
+  //   const handleClickToOpen = () => {
+  //       setOpen(true);
+  //   };
+    
+  //   const handleToClose = () => {
+  //       setOpen(false);
+  //   };
+  //   return (
+  //       <div stlye={{}}>
+  //           {/* <Button variant="outlined" color="primary"
+  //               onClick={handleClickToOpen}>
+  //               Open Demo Dialog
+  //           </Button> */}
+  //           {handleClickToOpen()};
+  //           <Dialog open={open} onClose={handleToClose}>
+  //               <DialogTitle>{"Error !!!"}</DialogTitle>
+  //               <DialogContent>
+  //                   <DialogContentText>
+  //                       Error !!!
+  //                   </DialogContentText>
+  //               </DialogContent>
+  //               <DialogActions>
+  //                   <Button onClick={handleToClose}
+  //                       color="primary" autoFocus>
+  //                       Close
+  //                   </Button>
+  //               </DialogActions>
+  //           </Dialog>
+  //       </div>
+  //   );
+  // }
 
   async function connectWallet() {
     if (typeof window.ethereum !== 'undefined') {
@@ -38,11 +79,18 @@ export default function SignUpPage(props) {
     if(props.signer === "") {
       console.log("Signer Error")
     }
+    if(props.password === ""){
+        alert("Password is empty.")
+    }
+
     let result = await signIn(props.medRecord, props.signer, props.password)
     // let result = await getCurrentTime(medRecord, signer)
     console.log(result)
     if (result === true) {
       navigate('/showDocs')
+    }
+    else{
+      alert("Password is incorrect.")
     }
   }
 

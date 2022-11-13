@@ -21,6 +21,7 @@ const ShareDocUI = (props) => {
       {SucessShare && (<SuccessPop closeshareUI={closeshareUI}/>)} 
       <div className="backdrop" onClick={props.exitQuesUI} />
       <div className="share-pop">
+        {/* <br /> */}
         <label className="share-pop-label" for="question_text">
           Share your Document With The Doctor:
         </label> <br />
