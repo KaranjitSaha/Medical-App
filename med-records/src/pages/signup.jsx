@@ -70,7 +70,7 @@ export default function SignUpPage(props) {
             <div class="form-group">
               <input
                 type="password"
-                class="form-control"
+                className="form-control"
                 id="exampleInputPassword1"
                 placeholder="Password"
                 value={password}

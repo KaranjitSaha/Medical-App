@@ -36,6 +36,14 @@ const ShareDocUI = (props) => {
           >
             Share Document
           </button>
+          <br/>
+          <button
+            className="btn btn-primary btn-lg"
+            style={{ marginRight: 10 }}
+            onClick={closeshareUI}
+          >
+            Close
+          </button>
       </div>
     </div>
   );

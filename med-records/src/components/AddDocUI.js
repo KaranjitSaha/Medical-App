@@ -71,9 +71,19 @@ const AddDocUI = (props) => {
         <button
           className="btn btn-primary"
           style={{ marginRight: 10 }}
-          onClick={closeaddDocUI}
+          onClick={closeaddDocUI} // raddi ka fnc
         >
           Confirm
+        </button>
+
+        {/* close button */}
+        <br/>
+        <button
+          className="btn btn-primary"
+          style={{ marginRight: 10 }}
+          onClick={closeaddDocUI}
+        >
+          Close
         </button>
       </div>
     </div>

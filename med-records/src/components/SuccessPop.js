@@ -13,7 +13,9 @@ const SuccessPop = (props) => {
         <div>
             {/* <div className="backdrop" onClick={props.exitQuesUI} /> */}
       <div className="sucess-pop">
-            <h1 style={{marginTop: 60, marginRight: 30, marginLeft: 30}}>Successfully shared the doument with doctor! paancho</h1>
+            <h2 style={{marginTop: 60, marginRight: 30, marginLeft: 30}}>Successfully shared the document with doctor!</h2>
+            <img src="../assets/check-share.png" alt="" style={{width: 200, height: 200}} />
+
         <br />
         <button
             className="btn btn-primary btn-lg"
