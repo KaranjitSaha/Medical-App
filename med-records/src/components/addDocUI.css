@@ -7,7 +7,7 @@
 }
 
 .add-pop {
-    padding-top: 1rem;
+    padding-top: 4rem;
     text-align: center;
     position: absolute;
     margin-top: 80px;
@@ -19,6 +19,8 @@
     height: 72%;
     border-radius: 1rem;
     border-color: black;
+    background-color: #74EBD5;
+    background-image: linear-gradient(135deg, #74EBD5 0%, #9FACE6 100%);
 }
 
 .add-pop-label {

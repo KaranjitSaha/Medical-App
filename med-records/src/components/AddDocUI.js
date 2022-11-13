@@ -55,8 +55,8 @@ const AddDocUI = (props) => {
   return (
     <div>
       <div className="backdrop" onClick={props.exitQuesUI} />
-      <div className="share-pop">
-        <label className="share-pop-label" for="question_text">
+      <div className="add-pop">
+        <label className="add-pop-label" for="question_text">
           Add New Document
         </label>{" "}
         <br/>

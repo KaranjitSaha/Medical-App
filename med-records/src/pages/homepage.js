@@ -4,7 +4,6 @@ import React from "react";
 import "./homepage.css";
 import {Link} from 'react-scroll'
 import Footer from '../components/Footer'
-import Modal from '../components/Modal';
 import {useNavigate} from 'react-router-dom'
 const Homepage = () => {
 
