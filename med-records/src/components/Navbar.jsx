@@ -18,7 +18,7 @@ const Navbar = ()=>{
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav" style={{ marginLeft: 650 }}>
-              <a class="nav-link active" aria-current="page" href="#">
+              <a class="nav-link active" aria-current="page" href="/homepage" >
                 Home
               </a>
               <a class="nav-link" href="#">

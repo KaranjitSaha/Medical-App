@@ -4,7 +4,7 @@ const Card = (props) => {
     return (
         <div class="card text-bg-dark mb-3" style={{ "width": "50rem", "height": "15rem" }}>
             <div class='row'>
-                <div class="card-header">{props.name} <input type='radio' style={{"float":"right","marginRight":"1rem","width":"1rem", "height":"1rem"}}></input></div>
+                <div class="card-header">{props.name} <input type='checkbox' style={{"float":"right","marginRight":"1rem","width":"1rem", "height":"1rem", "background-color":"green"}}></input></div>
                 
             </div>
 
