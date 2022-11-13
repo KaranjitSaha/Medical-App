@@ -14,9 +14,22 @@
     margin-left: 270px;
     z-index: 10;
     border-style: solid;
-    background-color: white;
+    background-color: #74EBD5;
+    background-image: linear-gradient(135deg, #74EBD5 0%, #9FACE6 100%);
+
     width: 50%;
-    height: 30%;
+    height: 37%;
     border-radius: 1rem;
     border-color: black;
+}
+
+.share-pop-label {
+    font-family: 'Belleza';font-size: 35px;
+    font-weight: bolder;
+}
+
+
+.text-meta {
+    border-width:2px; border-color:#cccccc; border-style:solid; border-radius:11px; font-size:19px; text-shadow:0px 0px 0px rgba(42,42,42,.74); box-shadow:inset 0px 0px 4px 0px rgba(42,42,42,.50); padding:8px;  }
+.css-input:focus { outline:none; 
 }

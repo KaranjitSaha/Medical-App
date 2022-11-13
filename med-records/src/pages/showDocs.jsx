@@ -53,7 +53,7 @@ export default function ShowDocs(props) {
       {addDocSelected && (<AddDocUI exitaddUI={exitaddUI} sharedDocs={sharedDocs} />)}
       <div style={{ display: "flex", justifyContent: "center" }}>
         <p style={{ fontSize: 25, alignContent: "center" }}>
-          <b>View Your Documents</b>
+          <b style={{fontFamily: "Courier Prime", fontSize: 30}}>View Your Documents</b>    
         </p>
       </div>
 

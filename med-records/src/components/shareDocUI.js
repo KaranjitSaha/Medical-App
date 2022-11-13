@@ -24,12 +24,13 @@ const ShareDocUI = (props) => {
         <label className="share-pop-label" for="question_text">
           Share your Document With The Doctor:
         </label> <br />
-        <label>Metamask Address of Doctor</label> <br />
-        <input type="text" placeholder="Metamask Address"/>
+        <label style={{fontFamily: 'Belleza', fontSize: 20, marginTop: 20, fontWeight: 'bold'}}>Metamask Address of Doctor</label> <br />
+        <input className="text-meta" type="text" placeholder="Metamask Address"/>
+        {/* <input type="text" class="form-control" id="usr" style={{width: 100}} /> */}
         <br />
         <br />
         <button
-            className="btn btn-primary"
+            className="btn btn-primary btn-lg"
             style={{ marginRight: 10 }}
             onClick={showsucesspop}
           >
