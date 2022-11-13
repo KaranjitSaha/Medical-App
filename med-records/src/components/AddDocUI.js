@@ -59,14 +59,13 @@ const AddDocUI = (props) => {
         <label className="share-pop-label" for="question_text">
           Add New Document
         </label>{" "}
+        <br/>
+        <label style={{fontFamily: 'Belleza', fontSize: 20, marginTop: 10, fontWeight: 'bold'}}>Doctor Name</label> <br />
+        <input className="text-meta" type="text" placeholder="Doctor Name" value={forum.DoctorName} onChange={updateDoctorName} />
         <br />
-        <label>Doctor Name</label> <br />
-        <input type="text" placeholder="Doctor Name" value={forum.DoctorName} onChange={updateDoctorName} />
-        <br />
-        <br />
-        <label>Domument Name</label> <br />
-        <input type="text" placeholder="Doc Name" value={forum.DocumentName} onChange={updateDocumentName} />
-        <label>Type of Document</label> <br />
+        <label style={{fontFamily: 'Belleza', fontSize: 20, marginTop: 20, fontWeight: 'bold'}}>Document Name</label> <br />
+        <input className="text-meta" type="text" placeholder="Doc Name" value={forum.DocumentName} onChange={updateDocumentName} /> <br/>
+        <label style={{fontFamily: 'Belleza', fontSize: 20, marginTop: 10, fontWeight: 'bold'}}>Type of Document</label> <br />
         <input
           className="form-check-input"
           type="radio"
@@ -75,6 +74,7 @@ const AddDocUI = (props) => {
           value="Medical Prescription"
           checked={forum.type === "Medical Prescription"}
           onChange={typeChange}
+          // style={{fontFamily: 'Belleza', fontSize: 5, fontWeight: 'semi-bold'}}
 
         />
         <label class="form-check-label" for="flexRadioDefault1">
@@ -121,29 +121,26 @@ const AddDocUI = (props) => {
         </label>
         <br />
         <div class="mb-2">
-          <label for="formFile" class="form-label">
+          <label for="formFile" class="form-label" style={{fontFamily: 'Belleza', fontSize: 20, marginTop: 10, fontWeight: 'bold'}} >
             Upload Your Document
           </label>
-          <input className="form-control" type="file" id="formFile" onChange={(e) => {
+          <input className="form-control" type="file" id="formFile" style={{width: 400, marginLeft: 200}} onChange={(e) => {
             showFile(e)
           }} />
         </div>
 
-        <br />
-        <br />
         <button
-          className="btn btn-primary"
-          style={{ marginRight: 10 }}
+          className="btn btn-primary btn-lg"
+          style={{ marginRight: 10, marginTop: 15}}
           onClick={closeaddDocUI} // raddi ka fnc
         >
           Confirm
         </button>
 
         {/* close button */}
-        <br/>
         <button
           className="btn btn-primary"
-          style={{ marginRight: 10 }}
+          style={{ marginLeft: 40, marginTop: 15}}
           onClick={closeaddDocUI}
         >
           Close

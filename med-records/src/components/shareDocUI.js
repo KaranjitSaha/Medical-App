@@ -37,6 +37,8 @@ const ShareDocUI = (props) => {
             Share Document
           </button>
           <br/>
+          <br />
+          <br />
           <button
             className="btn btn-primary btn-lg"
             style={{ marginRight: 10 }}

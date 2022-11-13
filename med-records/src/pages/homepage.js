@@ -17,7 +17,7 @@ const Homepage = () => {
   }
 
   return (
-    <div>
+    <div style={{marginLeft: 40}}>
       <div className="navbar">
         <div className="home-btn">
           <div className="app-title">MedRecords</div>
@@ -78,10 +78,13 @@ const Homepage = () => {
         </div>
       </div>
       <div>
+        <br/>
+        <br />
         <div className="home-img" style={{ marginLeft: 240 }}>
           <img src={require("../assets/Testimonials.png")} alt="rjgbekgn" id="reviews"></img>
         </div>
       </div>
+      < br />
       < Footer />
 
       {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">

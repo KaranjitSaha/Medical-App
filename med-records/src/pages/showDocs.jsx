@@ -16,9 +16,9 @@ export default function ShowDocs(props) {
   useEffect(() => {
     getTokenList(props.medRecord, props.signer).then(values => {
       let metaList = []
-      values.forEach((it) => {
-        metaList.push(getMetaData(props.medRecord, props.signer, it, props.password))
-      })
+      // values.forEach((it) => {
+      //   metaList.push(getMetaData(props.medRecord, props.signer, it, props.password))
+      // })
       if (metaList.length !== sharedDocs.length) {
         setSharedDocs(metaList)
       }
