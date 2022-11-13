@@ -79,6 +79,7 @@ async function signIn(medRecord, user, password) {
         await medRecord.connect(user).preSignUp(seed)
         let passCheckHash = aesjs.utils.hex.fromBytes(Hash(password + seed));
         await medRecord.connect(user).signUp(passCheckHash)
+        return true
     }
     else{
         let passCheckHash1 = aesjs.utils.hex.fromBytes(Hash(password + seed))

@@ -12,11 +12,11 @@ import abi_text from "./abi.json"
 
 export default function SignUpPage(props) {
   const [walletAddress, setWalletAddress] = useState("No Address")
-  const [password, setPassword] = useState("")
 
   let provider;
 
   let abi = abi_text
+  const navigate = useNavigate()
 
   async function connectWallet() {
     if (typeof window.ethereum !== 'undefined') {
@@ -38,13 +38,16 @@ export default function SignUpPage(props) {
     if(props.signer === "") {
       console.log("Signer Error")
     }
-    let result = await signIn(props.medRecord, props.signer, password)
+    let result = await signIn(props.medRecord, props.signer, props.password)
     // let result = await getCurrentTime(medRecord, signer)
     console.log(result)
+    if (result === true) {
+      navigate('/showDocs')
+    }
   }
 
   function handlePassChange(event) {
-    setPassword(event.target.value)
+    props.setPassword(event.target.value)
   }
 
   return (
@@ -73,7 +76,7 @@ export default function SignUpPage(props) {
                 className="form-control"
                 id="exampleInputPassword1"
                 placeholder="Password"
-                value={password}
+                value={props.password}
                 onChange={handlePassChange}
               />
 
